@@ -39,7 +39,7 @@ public class EmployeeRepository {
     }
 
     //DELETE
-    public CompletableFuture<Employee> deleteEmployeeById(String EmployeeId) {
+    public CompletableFuture<Employee> deleteEmployeeById(Long EmployeeId) {
         return EmployeeDynamoDbAsyncTable.deleteItem(getKeyBuild(EmployeeId));
     }
 
