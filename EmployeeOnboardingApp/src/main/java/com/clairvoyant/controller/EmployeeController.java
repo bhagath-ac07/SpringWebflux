@@ -25,6 +25,10 @@ public class EmployeeController {
     public Mono<Employee> getEmployee(@PathVariable("EmployeeId") Long employeeId) {
         return EmployeeService.getEmployeeByEmployeeId(employeeId);
     }
+    @GetMapping("/health")//R
+    public Mono<Result> getHealth() {
+        return Mono.just(Result.SUCCESS);
+    }
 
     @PutMapping("/updateEmployeeOrCreate")//U
     public Mono<Result> updateOrCreateEmployee(@RequestBody Employee Employee) {
@@ -32,7 +36,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/delete/{EmployeeId}")//D
-    public Mono<Result> deleteEmployee(@PathVariable("EmployeeId") String EmployeeId) {
+    public Mono<Result> deleteEmployee(@PathVariable("EmployeeId") Long EmployeeId) {
         return EmployeeService.deleteEmployeeByEmployeeId(EmployeeId);
     }
 

@@ -24,7 +24,9 @@ public class EmployeeService {
 
     public Mono<Result> createNewEmployee(Employee Employee) {
         CompletableFuture<Result> result = EmployeeRepository.save(Employee)
-                .handle((__, ex) -> ex == null ? SUCCESS : FAIL);
+                .handle((__, ex) ->{
+                    return  ex == null ? SUCCESS : FAIL;
+                });
         return Mono.fromFuture(result);
 
     }
@@ -62,9 +64,12 @@ public class EmployeeService {
         return Mono.fromFuture(result);
     }
 
-    public Mono<Result> deleteEmployeeByEmployeeId(String EmployeeId) {
+    public Mono<Result> deleteEmployeeByEmployeeId(Long EmployeeId) {
         CompletableFuture<Result> result = EmployeeRepository.deleteEmployeeById(EmployeeId)
-                .handle((__, ex) -> ex == null ? SUCCESS : FAIL);
+                .handle((__, ex) -> {
+                    return ex == null ? SUCCESS : FAIL;
+                }
+                    );
         return Mono.fromFuture(result);
     }
 
