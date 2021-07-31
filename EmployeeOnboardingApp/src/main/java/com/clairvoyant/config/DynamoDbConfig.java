@@ -48,6 +48,8 @@ public class DynamoDbConfig {
                                           .build();
     }
 
+
+
     @Bean
     public DynamoDbAsyncTable<Employee> getDynamoDbAsyncCustomer(DynamoDbEnhancedAsyncClient asyncClient) {
         return asyncClient.table(Employee.class.getSimpleName(), TableSchema.fromBean(Employee.class));

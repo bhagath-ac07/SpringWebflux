@@ -7,7 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class EmployeeOnboardingApp {
 
 	public static void main(String[] args) {
+try {
 
+
+}finally {
+
+}
 		SpringApplication.run(EmployeeOnboardingApp.class, args);
 	}
 

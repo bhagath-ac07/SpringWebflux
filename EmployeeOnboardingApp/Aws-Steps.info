@@ -1,0 +1,73 @@
+1. Create DynamoDb
+	TableName: Employee
+	Key: DSID Type:Number
+2.Create Group ->
+3.Create User ->
+Copy Access and scecret of that user
+Access:
+Secret:
+
+4. Create policy
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action":   [ "dynamodb:PutItem" ],
+      "Resource": [ "*" ]
+    },
+    {
+      "Effect": "Allow",
+      "Action":   [ "sns:Publish" ],
+      "Resource": [ "*" ]
+    }
+  ]
+}
+
+5. Attach policy to group created in step 2.
+
+7. Create a ElasticBeanstalk and uplaod jar.
+
+
+
+
+8. under EmployeeOnboarding folder run
+        - mvn clean install
+	- docker build -t bhagath-spring-webflux-001 (keep changing version number)
+        - docker login
+		        Username:
+                Password: 
+        - docker tag bhagath-spring-webflux-001 bhagathjava555/spring-webflux-demo-emp:001
+        - docker push bhagathjava555/spring-webflux-demo-emp:001
+9. Go to AWS
+	1. Select ECS
+        2. Click task defination -> Fargate -> Next
+        3. Give any task defination name
+        4. Role -> none
+        5. Task memory 1 gb
+        6. CPU 1 core
+        7. Click on add task container
+              1. Give any name.
+              2. docker image name: docker.io/bhagathjava555/spring-webflux-demo-emp:001
+              3. Specify Hard memory limit -> 1024
+              4. port mapping 5000 -> tcp
+              5. add new port mapping 80-> tcp
+              6. save
+        8. create
+ 10. Create Fargate cluster.
+	1. Under ECS create cluster
+        2. Select Network only option
+        3. Give any name
+        4. create
+11. Click on cluster
+     1. Click on Run new Task
+     2. Select Fargate
+     3. Select the task definition created at setp 9
+     4. Cluster vpc default one/ first option
+     5. subnets first option
+     6. security group click on edit
+     7. Give any meaningful security group name
+     8. Under Inbound rules for security group
+	 select type drop down
+           1. select All TCP
+           2. Add new and select All trafic
